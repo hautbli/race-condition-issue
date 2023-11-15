@@ -14,11 +14,10 @@ public class StockService {
         this.stockRepository = stockRepository;
     }
 
-    @Transactional
-    public void decrease(Long id, Long quantity) {
+//    @Transactional
+    public synchronized void decrease(Long id, Long quantity) {
         // Stock 조회
         Stock stock = stockRepository.findById(id).orElseThrow();
-        System.out.println(stock.getQuantity());
 
         // 재고를 감소
         stock.decrease(quantity);
